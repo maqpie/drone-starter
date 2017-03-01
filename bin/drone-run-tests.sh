@@ -1,6 +1,6 @@
 #!/bin/sh
 docker-compose --file docker-compose.drone-tests.yml rm -f # remove old containers
-docker-compose --file docker-compose.drone-tests.yml up --build "$@"
+docker-compose --file docker-compose.drone-tests.yml up --build
 
 echo "Inspecting exited containers:"
 docker-compose --file docker-compose.drone-tests.yml ps

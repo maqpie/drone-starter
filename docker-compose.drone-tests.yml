@@ -18,13 +18,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   api-tests:
-    image: drone-starter_api
+    image: dronestarter_ds-api
     command: npm run test
     depends_on:
       - mongo
       - ds-api
   web-tests:
-    image: drone-starter_web
+    image: dronestarter_ds-web
     command: npm run test
     depends_on:
       - ds-web

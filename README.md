@@ -83,7 +83,7 @@ Here is how signature works:
 1. Everytime you do a change to the `.drone.yml` you need to re-generate a signature.
 2. Drone CI than verifies your signature before starting a build and exposes your secrets only in case if verification passed.
 
-There is one possible scenario, where hacker might be able to get access to your keys. If you shell scripts as a command in `.drone.yml` hacker can possibly change this shell script and, for example, make a post request with your ssh key to some endpoint. That means that general security measures is always a good thing to do.
+There is one possible scenario, where hacker might be able to get access to your keys. If you shell scripts as a command in `.drone.yml` hacker can possibly change this shell script and, for example, make a post request with your ssh key to some endpoint. General security measures is always a good thing to do anyways.
 
 ### Generating drone signature
 
@@ -95,4 +95,4 @@ drone sign maqpie/drone-starter
 
 Use your repository name as parameter for the `drone sign`.
 
-Note: `docker sign` command will silently fail and won't create a `.docker.yml.sig` file if repository is not enabled using Drone UI. 
+Note: `docker sign` command will silently fail and won't create a `.docker.yml.sig` file if repository is not enabled using Drone UI.

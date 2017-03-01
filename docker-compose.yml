@@ -14,7 +14,6 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - "./api/src:/app/src"
-      - "./api/node_modules:/app/node_modules:ro"
     ports:
       - "8081:8081"
     depends_on:
@@ -27,17 +26,6 @@ services:
       - "./web/src:/app/src"
     ports:
       - "8082:8082"
-    depends_on:
-      - mongo
-      - api
-  admin:
-    build:
-      context: ./admin
-      dockerfile: Dockerfile.dev
-    volumes:
-      - "./admin/src:/app/src"
-    ports:
-      - "8083:8083"
     depends_on:
       - mongo
       - api
