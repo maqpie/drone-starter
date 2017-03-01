@@ -7,7 +7,6 @@ Where to start?
 1. If you already have running instance of Drone CI you can just fork this repository and enable it in Drone.
 2. If you are not familiar with Drone CI - we have detailed steps on how to setup Drone CI for local & production environments [in this repository](https://github.com/maqpie/deploy-drone)
 
-
 ### Repository structure
 
 The repository represent a typical Node.JS project, which has three services:
@@ -95,4 +94,4 @@ drone sign maqpie/drone-starter
 
 Use your repository name as parameter for the `drone sign`.
 
-Note: `docker sign` command will silently fail and won't create a `.docker.yml.sig` file if repository is not enabled using Drone UI. 
+Note: `docker sign` command will silently fail and won't create a `.docker.yml.sig` file if repository is not enabled using Drone UI.
