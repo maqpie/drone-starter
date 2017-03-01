@@ -1,0 +1,5 @@
+*.retry
+.DS_Store
+local/drone-data
+ssl-keys
+vars/credentials.yml

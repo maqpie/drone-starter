@@ -1,0 +1,30 @@
+version: '2'
+services:
+  ds-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    environment:
+      - NODE_ENV=test
+  ds-web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    environment:
+      - NODE_ENV=test
+  mongo:
+    command: mongod
+    image: mongo:3.2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  api-tests:
+    image: drone-starter_api
+    command: npm run test
+    depends_on:
+      - mongo
+      - ds-api
+  web-tests:
+    image: drone-starter_web
+    command: npm run test
+    depends_on:
+      - ds-web

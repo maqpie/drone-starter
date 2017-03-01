@@ -1,0 +1,25 @@
+{
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "no-console": 2,
+    "no-underscore-dangle": 0,
+    "import/no-unresolved": 0,
+    "func-names": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "src",
+          "shared",
+          "src/client",
+          "node_modules"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+pipeline:
+  run-tests-suite:
+    image: michalpodeszwa/docker-compose:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - ./bin/drone-run-tests.sh api-tests
+      - ./bin/drone-run-tests.sh web-tests
+    when:
+      event: [pull_request]
+
+  publish-api-docker:
+    image: plugins/docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    repo: anorsich/ds-api
+    tags:
+      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+    dockerfile: ./api/Dockerfile
+    context: ./api/
+    when:
+      branch: ["master", "production"]
+
+  publish-web-docker:
+    image: plugins/docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    repo: anorsich/ds-web
+    tags:
+      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+    dockerfile: ./web/Dockerfile
+    context: ./web/
+    when:
+      branch: ["master", "production"]
+
+  publish-landing-docker:
+    image: plugins/docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    repo: anorsich/ds-landing
+    tags:
+      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+    dockerfile: ./landing/Dockerfile
+    context: ./landing/
+    when:
+      branch: ["master", "production"]
