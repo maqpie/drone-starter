@@ -55,7 +55,6 @@ pipeline:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/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
     username: drone-ci
-    channel: andrew
     icon_emoji: ":rocket:"
     when:
       event: [ push, tag, deployment, pull_request ]
