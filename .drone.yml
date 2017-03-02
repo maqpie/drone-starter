@@ -4,8 +4,6 @@ pipeline:
     commands:
       - cd ./api && npm i
       - npm test
-    when:
-      event: [pull_request]
 
   run-tests-in-compose:
     image: michalpodeszwa/docker-compose:latest
