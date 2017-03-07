@@ -1,0 +1,3 @@
+---
+- src: woohgit.docker-gc
+  version: master

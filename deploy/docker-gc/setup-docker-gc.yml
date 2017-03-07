@@ -1,0 +1,15 @@
+- hosts: drone
+  vars:
+    exclude_from_gc:
+      - spotify/docker-gc
+      - mongo
+      - redis
+    grace_period: 86400 # once per day
+    gc_frequency: "daily"
+    force_container_removal: 1
+# By default, docker will not remove an image if it is tagged in multiple repositories.
+# If you have a server running docker where this is the case, for example in CI environments where dockers are being built,
+# re-tagged, and pushed, you can enable a force flag to override this default.
+    force_image_removal: 1
+  roles:
+     - { role: woohgit.docker-gc }

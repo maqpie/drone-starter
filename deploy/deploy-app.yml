@@ -1,0 +1,36 @@
+---
+-   name: Deploy application using docker
+    hosts: app-servers
+    remote_user: root
+    become: true
+    vars_files:
+      - ["vars/{{ env }}.yml"]
+    tasks:
+      - name: login into docker registry
+        docker_login:
+          username: "{{ docker_registry_username }}"
+          email: "{{ docker_registry_email }}"
+          password: "{{ docker_registry_password }}"
+        tags:
+          - login
+
+      - name: pull landing docker image
+        docker_image:
+          state: present
+          name: "anorsich/ds-landing:{{ docker_tag }}"
+          tag: "{{ docker_tag }}"
+        tags:
+          - landing
+
+      - name: run landing site via docker
+        docker_container:
+           name: "{{ env }}-landing-app"
+           image: "anorsich/ds-landing:{{ docker_tag }}"
+           state: started
+           restart_policy: always
+           ports:
+               - "9000:8080"
+           env:
+               NODE_ENV: "{{env}}"
+        tags:
+          - landing
