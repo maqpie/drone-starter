@@ -10,7 +10,10 @@ pipeline:
       event: [pull_request]
 
   publish-api-docker:
-    image: plugins/docker
+    image: plugins/docker:1.12
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     repo: anorsich/ds-api
@@ -22,7 +25,10 @@ pipeline:
       branch: ["master", "production"]
 
   publish-web-docker:
-    image: plugins/docker
+    image: plugins/docker:1.12
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     repo: anorsich/ds-web
@@ -34,7 +40,10 @@ pipeline:
       branch: ["master", "production"]
 
   publish-landing-docker:
-    image: plugins/docker
+    image: plugins/docker:1.12
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     repo: anorsich/ds-landing

@@ -53,26 +53,29 @@ In this sample project we use two plugins to achieve what we need:
 
 Drone has really nice way of sharing secret information, such as password and ssh keys in a secure way. We use Dockerhub to publish docker images, which require username and password. We also use Ansible to deploy our application over to the production server. To being able to do this we need supply our ssh key. Pushing secret information to the Github repository is a bad practice, creating one possibility for hackers to shut down your service.
 
-Every password is exposed to certain docker images. Either plugin images or custom images. To make our build work we need to expose:
-
-1. SSH key to Ansible image (`williamyeh/ansible:ubuntu16.04`), which deploy an appplication
-2. Dockerhub username, password and email to the Dockerhub plugin image (`plugins/docker`)
-
 Let's start from adding our ssh key:
 
 ```
-drone global secret add --image williamyeh/ansible:ubuntu16.04 SSH_KEY @/Users/andrew/.ssh/id_rsa-drone-demo
-```
-Now our ssh key should be available to Drone. The last step remainning is to add our Dockerhub credentials:
-
-```
-drone global secret add --image plugins/docker --image williamyeh/ansible:ubuntu16.04 DOCKER_USERNAME YOUR_DOCKERHUB_USERNAME
-drone global secret add --image plugins/docker --image williamyeh/ansible:ubuntu16.04 DOCKER_PASSWORD YOUR_DOCKERHUB_PASSWORD
-drone global secret add --image plugins/docker --image williamyeh/ansible:ubuntu16.04 DOCKER_EMAIL YOUR_DOCKERHUB_EMAIL
+drone global secret add SSH_KEY @/Users/andrew/.ssh/id_rsa-drone-demo
 ```
 
-Note: every plugin use specific environment variables names which you can use to customize plugin behavior. Drone documentation is not perfect yet, so best way to figure out names of this variables is to look into source code. [Here](https://github.com/drone-plugins/drone-docker/blob/master/main.go#L25) list of variables available for docker plugin.
+Now our ssh key should be available to Drone. The last step remaining is to add our Dockerhub credentials:
 
+```
+drone global secret add DOCKER_USERNAME YOUR_DOCKERHUB_USERNAME
+drone global secret add DOCKER_PASSWORD YOUR_DOCKERHUB_PASSWORD
+drone global secret add DOCKER_EMAIL YOUR_DOCKERHUB_EMAIL
+```
+
+Now this variables can be directly used in `.drone.yml`. Here are small example, where we pass Dockerhub credentials to the Drone's Docker plugin:
+
+```
+publish-api-docker:
+  image: plugins/docker:1.12
+  username: ${DOCKER_USERNAME}
+  password: ${DOCKER_PASSWORD}
+  email: ${DOCKER_EMAIL}
+```
 
 ### Understanding Drone signature
 
