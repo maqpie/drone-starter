@@ -46,8 +46,10 @@ Now, you should be able to interact with Drone CI using Drone CLI.
 Plugins is a Drone way to integrate with a third party services, such as Amazon S3, Dockerhub and Slack. The full list of currently available plugins can be found [here](http://addons.drone.io/). Plugin is a docker container that execute a predefined task.
 In this sample project we use two plugins to achieve what we need:
 
-1. Dockerhub plugin to push our docker images
+1. Docker plugin to push our docker images
 2. Slack plugin to notify about build status
+
+Note: We use old version of Docker plugin to upload images over to the Dockerhub (`plugins/docker:1.12`). The main reason for this is that we want to utilize Docker cache while `The primary goal of this plugin is to build docker images with host machine isolation.` The [this](https://github.com/drone-plugins/drone-docker/pull/110) and [this](https://github.com/drone-plugins/drone-docker/issues/117#issuecomment-286996896) threads for more details on the issue.
 
 ### Build private variables or secrets
 
