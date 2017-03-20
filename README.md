@@ -101,3 +101,16 @@ drone sign maqpie/drone-starter
 Use your repository name as parameter for the `drone sign`.
 
 Note: `docker sign` command will silently fail and won't create a `.docker.yml.sig` file if repository is not enabled using Drone UI.
+
+
+### Notes on working with fork of this repository
+
+To play around and make fork of this repository work in your own Drone instance make sure to do few things:
+
+1. Change Dockerhub images names in `.drone.yml` and in `deploy/deploy-app.yml` to start with your name (`anorsich/ds-api`, `anorsich/ds-web`, `anorsich/ds-landing`). You can create public images for free on Dockerhub.
+2. Update ip address of test server in `deploy/hosts/staging` and make sure that key, added to the Drone has access to it.
+3. Add variables to the Drone (dockerhub credentials and ssh key)
+4. Enable forked repo in the Drone UI.
+5. Update drone signature
+
+After these changes Drone's build should be green. Create an issue if something went wrong and we will try to help!
