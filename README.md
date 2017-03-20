@@ -49,7 +49,7 @@ In this sample project we use two plugins to achieve what we need:
 1. Docker plugin to push our docker images
 2. Slack plugin to notify about build status
 
-Note: We use old version of Docker plugin to upload images over to the Dockerhub (`plugins/docker:1.12`). The main reason for this is that we want to utilize Docker cache while `The primary goal of this plugin is to build docker images with host machine isolation.` The [this](https://github.com/drone-plugins/drone-docker/pull/110) and [this](https://github.com/drone-plugins/drone-docker/issues/117#issuecomment-286996896) threads for more details on the issue.
+Note: We use old version of Docker plugin to upload images over to the Dockerhub (`plugins/docker:1.12`). The main reason for this is that we want to utilize Docker cache while `The primary goal of this plugin is to build docker images with host machine isolation.`. Read [this](https://github.com/drone-plugins/drone-docker/pull/110) and [this](https://github.com/drone-plugins/drone-docker/issues/117#issuecomment-286996896) threads for more details and possible workarounds.
 
 ### Build private variables or secrets
 
