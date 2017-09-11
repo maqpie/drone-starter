@@ -6,6 +6,8 @@ pipeline:
     commands:
       - ./bin/drone-run-tests.sh api-tests
       - ./bin/drone-run-tests.sh web-tests
+    when:
+      event: [pull_request]
 
   # publish-api-docker:
   #   image: plugins/docker:1.12
