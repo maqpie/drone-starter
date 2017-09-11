@@ -9,68 +9,68 @@ pipeline:
     when:
       event: [pull_request]
 
-  publish-api-docker:
-    image: plugins/docker:1.12
-    username: ${DOCKER_USERNAME}
-    password: ${DOCKER_PASSWORD}
-    email: ${DOCKER_EMAIL}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-api
-    tags:
-      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
-    dockerfile: ./api/Dockerfile
-    context: ./api/
-    when:
-      branch: ["master", "production"]
+  # publish-api-docker:
+  #   image: plugins/docker:1.12
+  #   username: ${DOCKER_USERNAME}
+  #   password: ${DOCKER_PASSWORD}
+  #   email: ${DOCKER_EMAIL}
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   repo: anorsich/ds-api
+  #   tags:
+  #     - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+  #   dockerfile: ./api/Dockerfile
+  #   context: ./api/
+  #   when:
+  #     branch: ["master", "production"]
 
-  publish-web-docker:
-    image: plugins/docker:1.12
-    username: ${DOCKER_USERNAME}
-    password: ${DOCKER_PASSWORD}
-    email: ${DOCKER_EMAIL}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-web
-    tags:
-      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
-    dockerfile: ./web/Dockerfile
-    context: ./web/
-    when:
-      branch: ["master", "production"]
+  # publish-web-docker:
+  #   image: plugins/docker:1.12
+  #   username: ${DOCKER_USERNAME}
+  #   password: ${DOCKER_PASSWORD}
+  #   email: ${DOCKER_EMAIL}
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   repo: anorsich/ds-web
+  #   tags:
+  #     - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+  #   dockerfile: ./web/Dockerfile
+  #   context: ./web/
+  #   when:
+  #     branch: ["master", "production"]
 
-  publish-landing-docker:
-    image: plugins/docker:1.12
-    username: ${DOCKER_USERNAME}
-    password: ${DOCKER_PASSWORD}
-    email: ${DOCKER_EMAIL}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-landing
-    tags:
-      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
-    dockerfile: ./landing/Dockerfile
-    context: ./landing/
-    when:
-      branch: ["master", "production"]
+  # publish-landing-docker:
+  #   image: plugins/docker:1.12
+  #   username: ${DOCKER_USERNAME}
+  #   password: ${DOCKER_PASSWORD}
+  #   email: ${DOCKER_EMAIL}
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   repo: anorsich/ds-landing
+  #   tags:
+  #     - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+  #   dockerfile: ./landing/Dockerfile
+  #   context: ./landing/
+  #   when:
+  #     branch: ["master", "production"]
 
-  deploy-staging:
-    image: williamyeh/ansible:ubuntu16.04
-    commands:
-      - mkdir -p ~/.ssh/
-      - echo ${SSH_KEY} > ~/.ssh/id_rsa_app && chmod 600 ~/.ssh/id_rsa_app
-      - cd ./deploy/bin && ./deploy-staging-app.sh --private-key ~/.ssh/id_rsa_app --extra-vars "docker_tag=${DRONE_BRANCH}_${DRONE_COMMIT} docker_registry_username=$DOCKER_USERNAME docker_registry_password=$DOCKER_PASSWORD docker_registry_email=$DOCKER_EMAIL"
-    when:
-      branch: ["master"]
-      event: [push]
+  # deploy-staging:
+  #   image: williamyeh/ansible:ubuntu16.04
+  #   commands:
+  #     - mkdir -p ~/.ssh/
+  #     - echo ${SSH_KEY} > ~/.ssh/id_rsa_app && chmod 600 ~/.ssh/id_rsa_app
+  #     - cd ./deploy/bin && ./deploy-staging-app.sh --private-key ~/.ssh/id_rsa_app --extra-vars "docker_tag=${DRONE_BRANCH}_${DRONE_COMMIT} docker_registry_username=$DOCKER_USERNAME docker_registry_password=$DOCKER_PASSWORD docker_registry_email=$DOCKER_EMAIL"
+  #   when:
+  #     branch: ["master"]
+  #     event: [push]
 
-  slack-notification:
-    image: plugins/slack
-    # that will send a personal notification to our drone-starter slack channel
-    # read here how to setup slack webhooks for your account: https://api.slack.com/incoming-webhooks
-    webhook: https://hooks.slack.com/services/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
-    username: drone-starter
-    icon_emoji: ":rocket:"
-    when:
-      event: [ push, tag, deployment, pull_request ]
-      status: [ success, failure ]
+  # slack-notification:
+  #   image: plugins/slack
+  #   # that will send a personal notification to our drone-starter slack channel
+  #   # read here how to setup slack webhooks for your account: https://api.slack.com/incoming-webhooks
+  #   webhook: https://hooks.slack.com/services/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
+  #   username: drone-starter
+  #   icon_emoji: ":rocket:"
+  #   when:
+  #     event: [ push, tag, deployment, pull_request ]
+  #     status: [ success, failure ]
