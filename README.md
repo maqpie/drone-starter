@@ -8,7 +8,7 @@ Where to start?
 2. If you are not familiar with Drone CI - we have detailed steps on how to setup Drone CI for local & production environments [in this repository](https://github.com/maqpie/deploy-drone)
 
 
-### Repository structure
+### Repository structure test
 
 The repository represent a typical Node.JS project, which has three services:
 
