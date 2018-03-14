@@ -1,6 +1,6 @@
 ## Getting started with Drone CI
 
-This repository aims to show how to build a continuos integration process using Drone CI. To get a full picture we recommend to read our [blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) first. In blog post we describe how we do continuos integration at Maqpie and talk about why enjoy Drone CI so much.
+test  This repository aims to show how to build a continuos integration process using Drone CI. To get a full picture we recommend to read our [blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) first. In blog post we describe how we do continuos integration at Maqpie and talk about why enjoy Drone CI so much.
 
 Where to start?
 
@@ -8,7 +8,7 @@ Where to start?
 2. If you are not familiar with Drone CI - we have detailed steps on how to setup Drone CI for local & production environments [in this repository](https://github.com/maqpie/deploy-drone)
 
 
-### Repository structure
+### Repository structure test
 
 The repository represent a typical Node.JS project, which has three services:
 
