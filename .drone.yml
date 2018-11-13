@@ -16,7 +16,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-api
+    repo: scampuza/ds-api
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./api/Dockerfile
@@ -31,7 +31,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-web
+    repo: scampuza/ds-web
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./web/Dockerfile
@@ -46,7 +46,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: anorsich/ds-landing
+    repo: scampuzaß/ds-landing
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./landing/Dockerfile
@@ -68,8 +68,8 @@ pipeline:
     image: plugins/slack
     # that will send a personal notification to our drone-starter slack channel
     # read here how to setup slack webhooks for your account: https://api.slack.com/incoming-webhooks
-    webhook: https://hooks.slack.com/services/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
-    username: drone-starter
+    webhook: https://hooks.slack.com/services/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
+    username: santiago
     icon_emoji: ":rocket:"
     when:
       event: [ push, tag, deployment, pull_request ]

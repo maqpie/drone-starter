@@ -1,7 +1,7 @@
 ---
 -   name: Deploy application using docker
     hosts: app-servers
-    remote_user: root
+    remote_user: ubuntu
     become: true
     vars_files:
       - ["vars/{{ env }}.yml"]
@@ -17,7 +17,7 @@
       - name: pull landing docker image
         docker_image:
           state: present
-          name: "anorsich/ds-landing:{{ docker_tag }}"
+          name: "scampuza/ds-landing:{{ docker_tag }}"
           tag: "{{ docker_tag }}"
         tags:
           - landing
@@ -25,7 +25,7 @@
       - name: run landing site via docker
         docker_container:
            name: "{{ env }}-landing-app"
-           image: "anorsich/ds-landing:{{ docker_tag }}"
+           image: "scampuza/ds-landing:{{ docker_tag }}"
            state: started
            restart_policy: always
            ports:
