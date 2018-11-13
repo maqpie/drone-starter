@@ -14,7 +14,6 @@ pipeline:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - env
       - echo ${DOCKER_USERNAME}
       - echo ${DOCKER_PASSWORD}
       - echo ${DOCKER_EMAIL}
