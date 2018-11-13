@@ -57,12 +57,12 @@ pipeline:
       branch: ["master", "production"]
     secrets: [docker_username, docker_password, docker_email]
 
-  mostrar_secretos:
-    image: alpine
-    command: 
-      - printenv
-    secrets: [docker_username, docker_password, docker_email, ssh_key]
-    
+  # mostrar_secretos:
+  #   image: alpine
+  #   command: 
+  #     - printenv
+  #   secrets: [docker_username, docker_password, docker_email, ssh_key]
+
   deploy-staging:
     image: williamyeh/ansible:ubuntu16.04
     commands:
