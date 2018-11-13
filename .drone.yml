@@ -66,7 +66,7 @@ pipeline:
 
   slack-notification:
     image: plugins/slack
-    # that swill send a personal notification to our drone-starter slack channel
+    # that sswill send a personal notification to our drone-starter slack channel
     # read here how to setup slack webhooks for your account: https://api.slack.com/incoming-webhooks
     webhook: https://hooks.slack.com/services/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
     username: santiago
