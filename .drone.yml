@@ -17,7 +17,7 @@ pipeline:
       - echo ${DOCKER_USERNAME}
       - echo ${DOCKER_PASSWORD}
       - echo ${DOCKER_EMAIL}
-    secrets: [DOCKER_USERNAME, DOCKER_PASSWORD, DOCKER_EMAIL]
+    secrets: [docker_username, docker_password, docker_email]
 
 
   publish-api-docker:
