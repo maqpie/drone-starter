@@ -16,7 +16,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: scampuza/ds-api
+    repo: santiagocv/ds-api
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./api/Dockerfile
@@ -31,7 +31,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: scampuza/ds-web
+    repo: santiagocv/ds-web
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./web/Dockerfile
@@ -46,7 +46,7 @@ pipeline:
     email: ${DOCKER_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    repo: scampuzaß/ds-landing
+    repo: santiagocv/ds-landing
     tags:
       - "${DRONE_BRANCH}_${DRONE_COMMIT}"
     dockerfile: ./landing/Dockerfile
