@@ -10,13 +10,11 @@ pipeline:
       event: [pull_request]
 
   printpass:
-    image: williamyeh/ansible:ubuntu16.04
+    image: alpine
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - echo ${DOCKER_USERNAME}
-      - echo ${DOCKER_PASSWORD}
-      - echo ${DOCKER_EMAIL}
+      - printenv
     secrets: [docker_username, docker_password, docker_email]
 
 
