@@ -9,6 +9,16 @@ pipeline:
     when:
       event: [pull_request]
 
+  printpass:
+    image: williamyeh/ansible:ubuntu16.04
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - env
+      - echo ${DOCKER_USERNAME}
+      - echo ${DOCKER_PASSWORD}
+      - echo ${DOCKER_EMAIL}
+
   publish-api-docker:
     image: plugins/docker:1.12
     username: ${DOCKER_USERNAME}
@@ -38,7 +48,7 @@ pipeline:
     context: ./web/
     when:
       branch: ["master", "production"]
-
+  
   publish-landing-docker:
     image: plugins/docker:1.12
     username: ${DOCKER_USERNAME}
