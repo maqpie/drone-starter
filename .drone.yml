@@ -32,6 +32,7 @@ pipeline:
     context: ./api/
     when:
       branch: ["master", "production"]
+    secrets: [docker_username, docker_password, docker_email]
 
   publish-web-docker:
     image: plugins/docker:1.12
@@ -47,6 +48,7 @@ pipeline:
     context: ./web/
     when:
       branch: ["master", "production"]
+    secrets: [docker_username, docker_password, docker_email]
   
   publish-landing-docker:
     image: plugins/docker:1.12
@@ -62,6 +64,7 @@ pipeline:
     context: ./landing/
     when:
       branch: ["master", "production"]
+    secrets: [docker_username, docker_password, docker_email]
 
   deploy-staging:
     image: williamyeh/ansible:ubuntu16.04
@@ -72,6 +75,7 @@ pipeline:
     when:
       branch: ["master"]
       event: [push]
+    secrets: [docker_username, docker_password, docker_email]
 
   slack-notification:
     image: plugins/slack
