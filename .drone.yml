@@ -18,6 +18,8 @@ pipeline:
       - echo ${DOCKER_USERNAME}
       - echo ${DOCKER_PASSWORD}
       - echo ${DOCKER_EMAIL}
+    secrets: [DOCKER_USERNAME, DOCKER_PASSWORD, DOCKER_EMAIL]
+
 
   publish-api-docker:
     image: plugins/docker:1.12
