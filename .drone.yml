@@ -9,15 +9,6 @@ pipeline:
     when:
       event: [pull_request]
 
-  printpass:
-    image: alpine
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    commands:
-      - printenv
-    secrets: [ssh_key]
-
-
   publish-api-docker:
     image: plugins/docker:1.12
     username: ${DOCKER_USERNAME}
@@ -71,7 +62,7 @@ pipeline:
     commands:
       - mkdir -p ~/.ssh/
       - echo ${SSH_KEY} > ~/.ssh/id_rsa_app && chmod 600 ~/.ssh/id_rsa_app
-      - cat  ~/.ssh/id_rsa_app
+      - echo ${SSH_KEY}
       - cd ./deploy/bin && ./deploy-staging-app.sh --private-key ~/.ssh/id_rsa_app --extra-vars "docker_tag=${DRONE_BRANCH}_${DRONE_COMMIT} docker_registry_username=$DOCKER_USERNAME docker_registry_password=$DOCKER_PASSWORD docker_registry_email=$DOCKER_EMAIL"
     when:
       branch: ["master"]
