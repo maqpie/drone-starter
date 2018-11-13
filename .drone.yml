@@ -75,7 +75,7 @@ pipeline:
     when:
       branch: ["master"]
       event: [push]
-    secrets: [docker_username, docker_password, docker_email]
+    secrets: [docker_username, docker_password, docker_email, ssh_key]
 
   slack-notification:
     image: plugins/slack
