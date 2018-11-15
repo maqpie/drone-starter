@@ -57,11 +57,11 @@ pipeline:
       branch: ["master", "production"]
     secrets: [docker_username, docker_password, docker_email]
 
-  mostrar_secretos:
-    image: alpine
-    commands: 
-      - printenv
-    secrets: [docker_username, docker_password, docker_email, ssh_key]
+  # mostrar_secretos:
+  #   image: alpine
+  #   commands: 
+  #     - printenv
+  #   secrets: [docker_username, docker_password, docker_email, ssh_key]
 
   deploy-staging:
     image: williamyeh/ansible:ubuntu16.04
@@ -78,7 +78,7 @@ pipeline:
 
   slack-notification:
     image: plugins/slack
-    # that sswill send a personal notification to our drone-starter slack channel
+    # that will send a personal notification to our drone-starter slack channel
     # read here how to setup slack webhooks for your account: https://api.slack.com/incoming-webhooks
     webhook: https://hooks.slack.com/services/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
     username: santiago
