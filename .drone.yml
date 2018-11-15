@@ -68,7 +68,7 @@ pipeline:
     commands:
       - mkdir -p ~/.ssh/
       #- echo ${SSH_KEY} > ~/.ssh/id_rsa_app && chmod 600 ~/.ssh/id_rsa_app
-      - cp deploy/id_rsa_app ~/.ssh/id_rsa_app && chmod 600 ~/.ssh/id_rsa_app
+      - cp deploy/id_rsa_app ~/.ssh/ && chmod 600 ~/.ssh/id_rsa_app
       - cd ./deploy/bin && ./deploy-staging-app.sh --private-key ~/.ssh/id_rsa_app --extra-vars "docker_tag=${DRONE_BRANCH}_${DRONE_COMMIT} docker_registry_username=$DOCKER_USERNAME docker_registry_password=$DOCKER_PASSWORD docker_registry_email=$DOCKER_EMAIL"
     when:
       branch: ["master"]
