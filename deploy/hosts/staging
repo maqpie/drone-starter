@@ -1,2 +1,2 @@
 [app-servers]
-app-staging ansible_ssh_host=54.147.194.212 ansible_user=root
+app-staging ansible_ssh_host=52.55.159.138 ansible_user=ubuntu
